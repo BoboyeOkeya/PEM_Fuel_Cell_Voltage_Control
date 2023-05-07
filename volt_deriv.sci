@@ -1,4 +1,4 @@
-function y = volt_deriv(x1,x2,x3,u)
+function x4d = volt_deriv(x1,x2,x3,u)
 tau_h = 3.37 //hydrogen flow rise time(s)
 a1 = -1/tau_h
 N = 500 //Number of cells in series
@@ -31,7 +31,7 @@ n = 8e-3 //a constant value cm^2/mA
 
 io = 0.04 //mA/cm^2 the density of some reference current
 Eo = (N*1.229)+(K2*log(io*a))//(V)Standard open circuit voltage (V)
-Io = 47 //initial current(A)    
+Io = 47e3 //initial current(A)    
 
 
 [i, inf, nan] = (%i, %inf, %nan);
@@ -40,10 +40,10 @@ Io = 47 //initial current(A)
     first_denum = 1 + K4 + (K2/(R_load*x3)) + (K3*n*exp(n*x3/a))/(R_load*a)
     first = first_num/(first_denum)
     second = (K1*a1)+(K1*a2*x3/x1) + (K1*b1*u/x1) + (K1*a3/2) + (K1*a4*x3/(2*x2)) + (K1*b2*u/(2*x2))
-    y = first*second
-    fallback = 1e-6
-    if isinf(y) | isnan(y)  then
-        y = fallback
+    x4d = first*second
+    fallback = 1e-10
+    if isinf(x4d) | isnan(x4d)  then
+        x4d = fallback
     end
     
 endfunction
