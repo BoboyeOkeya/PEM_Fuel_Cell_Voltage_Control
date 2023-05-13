@@ -1,31 +1,42 @@
-# Modelling of a Fuel Cell
+# Modelling of Fuel Cells
 
 ## Brief Description
 These files represent my attempts to model a fuel cell--it could either be a Proton Exchange Membrane Fuel Cell(PEMFC) or a Solid Oxide Fuel Cell.
 
 There are various models available in the body of knowledge, my repo has the following:
 
-**a. `padulles_model.zcos`:** 
+### **A. `padulles_model.zcos`:** 
 
-This is a dynamic model that I designed in Xcos according to this model diagram shown in the figure below obtained from [1][2].![padulles1](Figures/fig_padulles1.png)
+This is a dynamic model that I designed in Xcos according to this model diagram shown in the figure below obtained from [1][2]. 
+
+![padulles1](Figures/fig_padulles1.png)
 
 There is also a huge open source repository for Fuel cell simulation tools that contains a lot of other models, you can reach them through this link [opem](https://github.com/ECSIM/opem).
 
-This model represents a PEMFC, which are low-temperature devices. And in their operation it is assumed that its water by-product does not evaporate, hence the pressure of water ($P_{H_2O}$) is omitted. However, this is not true for an SOFC.
+This model represents a `PEMFC`, which are low-temperature devices. And in their operation it is assumed that its water by-product does not evaporate, hence the pressure of water ($P_{H_2O}$) is omitted. However, this is not true for an SOFC.
 
-Please, kindly note that I have validated the model in `padulles_model.zcos` against the results presented in [dynamic_padulles1](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html). The model results are shown below
+Please, kindly note that I have validated the model in `padulles_model.zcos` against the results presented in [Padulles Dynamic Model I](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html). The model results are shown below
 
 ![stackvoltage](Figures/padulles1_outputvoltage.png)
 ![ph2](Figures/padulles1_Ph2.png)
 ![po2](Figures/padulles1_Po2.png)
 
 
-Although, these results are similar to the results in [dynamic_padulles1](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html) . I observed a slightly different result when I included the laplace `s` variable. For example, the fuel stack's output voltage increased. The comparison is shown below:
+Although, these results are similar to the results in [Padulles Dynamic Model I](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html) . I observed a slightly different result when I included the laplace `s` variable. For example, the fuel stack's output voltage increased. The comparison is shown below:
 ![sdomain](Figures/padulles1_sdomain_time.png)
 
-Based on the original paper [1],these model is based on a lot of assumptions which can be found in the overview section of [dynamic_padulles1](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html).
+Based on the original paper [1],these model is based on a lot of assumptions which can be found in the overview section of [Padulles Dynamic Model I](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html).
 
-**b. `fuel_cell.zcos`:**
+### **B. `padulles_model2.zcos`:** 
+
+I also designed this in Xcos according to the model that can be found in the open source fuel cell simulator. However, this includes the water by-product. Hence, I would say that this describe a high temperature device such as the `SOFC`, since it accounts for the pressure of water vapour--caused when the water by-product evaporates at high temperature. The Xcos model diagram follows the diagram shown on this [opem page](https://www.ecsim.ir/opem/doc/Dynamic/Padulles2.html) and the validation results can be found in the file directory `Figures/` above. The results are prefixed with `padulles2_`.
+
+Also, the results--mine and the open simulator's--were similar but when I include the laplace `s` variable, there is a slight difference between. The fuel cell stack's output voltage comparison is shown in figure below ![sdomain2](Figures/padulles2_sdomain_time.png).
+
+This model is also based on some assumptions as can be found in the overview section of [Padulles Dynamic Model II](https://www.ecsim.ir/opem/doc/Dynamic/Padulles2.html)
+
+
+### **C. `fuel_cell.zcos`:**
 
 This is a state-space representation where
 
