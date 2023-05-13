@@ -14,12 +14,12 @@ There is also a huge open source repository for Fuel cell simulation tools that 
 This model represents a PEMFC, which are low-temperature devices. And in their operation it is assumed that its water by-product does not evaporate, hence the pressure of water ($P_{H_2O}$) is omitted. However, this is not true for an SOFC.
 
 Please, kindly note that I have validated the model in `padulles_model.zcos` against the results presented in [dynamic_padulles1](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html). The model results are shown below
-<img src="Figures/padulles1_outputvoltage.png " width="400" height="400">
-<img src="Figures/padulles1_Ph2.png " width="400" height="400">
-<img src="Figures/padulles1_Po2.png " width="400" height="400">
+<img src="/Figures/padulles1_outputvoltage.png " width="400" height="400">
+<img src="/Figures/padulles1_Ph2.png " width="400" height="400">
+<img src="/Figures/padulles1_Po2.png " width="400" height="400">
 
 Although, these results are similar to the results in [dynamic_padulles1](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html) . I observed a slightly different result when I included the laplace `s` variable. For example, the fuel stack's output voltage increased. The comparison is shown below:
-<img src="Figures/padulles1_sdomain_time.png " width="700" height="400">
+<img src="/Figures/padulles1_sdomain_time.png " width="700" height="400">
 
 Based on the original paper [1],these model is based on a lot of assumptions which can be found in the overview section of [dynamic_padulles1](https://www.ecsim.ir/opem/doc/Dynamic/Padulles1.html).
 
