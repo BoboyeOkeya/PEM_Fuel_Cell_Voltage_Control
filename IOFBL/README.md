@@ -7,13 +7,12 @@ This folder contains the IOFBL based controller designed for a PEM fuel cell mod
 
 The state space representation of the padulles model1 is as shown below
 
-$$\begin{equation}
-    \dot{x_1} = \frac{-x_1}{\tau_{H_2}} + \frac{u_1}{k_{H_2}\tau_{H_2}} - \frac{2K_ru_3}{k_{H_2}\tau_{H_2}}
-\end{equation}$$
+$$    \dot{x_1} = \frac{-x_1}{\tau_{H_2}} + \frac{u_1}{k_{H_2}\tau_{H_2}} - \frac{2K_ru_3}{k_{H_2}\tau_{H_2}} ... (1)
+$$
 
-$$\begin{equation}\dot{x_2} = \frac{-x_2}{\tau_{O_2}} + \frac{u_2}{k_{O_2}\tau_{O_2}} - \frac{K_ru_3}{k_{O_2}\tau_{O_2}}\end{equation}$$
+$$\dot{x_2} = \frac{-x_2}{\tau_{O_2}} + \frac{u_2}{k_{O_2}\tau_{O_2}} - \frac{K_ru_3}{k_{O_2}\tau_{O_2}}...(2)$$
 
-$$\begin{equation}y = N_o \left[E_o + \frac{RT\ln{x_1}}{2F} + \frac{RT\ln{x_2}}{4F}\right]-u_3r-B\ln{C}-B\ln{u_3}\end{equation}$$
+$$y = N_o \left[E_o + \frac{RT\ln{x_1}}{2F} + \frac{RT\ln{x_2}}{4F}\right]-u_3r-B\ln{C}-B\ln{u_3}...(3)$$
 
 Where, $x_1$ is the partial pressure of hydrogen(atm), $x_2$ is the partial pressure of oxygen(atm), $u_1$ is the inlet molar flow rate of hydrogen(kmol/s), $u_2$ is the inlet molar flow rate of oxygen(kmol/s), $u_3$ is the fuel cell stack current(A)--which we will consider as an input for this control design. $y$ is the fuel cell stack output voltage(V), $k_{H_2}$ is the hydrogen valve constant(kmol/atm.s), ${\tau_{H_2}}$ is hydrogen flow time constant(s), $K_r = \frac{N_o}{4F}$ is a constant(kmol/s.A), $N_o$ is the Number of cells, $F$ is the Faraday's constant (C/kmol). $k_{O_2}$ is the oxygen valve constant (kmol/atm.s), $\tau_{O_2}$ is the oxygen time constant(s). $E_o$ is the no-load open-circuit voltage(V), $R$ is the universal gas constant(J/kmol.K), $T$ is the fuel cell stack temperature(K), $r$ is the fuel cell internal resistance($\Omega$), $B$ is the activation voltage constant(V), $C$ is the activation constant parameter(1/A).
 
@@ -22,15 +21,14 @@ From the above state-space representation, it becomes obvious that the system is
 The steps for the IOFBL controller are as shown below:
 
 **1. Express the state space equations 1,2,3 above in the form below [1]**
-$$\begin{equation}
-\begin{split}
-    \dot{x} &= f(x) + \sum_{i=1}^{m}{g_i(x)u_i},
+$$
+    \dot{x} = f(x) + \sum_{i=1}^{m}{g_i(x)u_i}
     \\
-    y_i &= h_i(x)
-\end{split} 
-\end{equation}$$
+    y_i = h_i(x)...(4)
+$$
 
 **2. In order to use the IOFBL technique the number of outputs(1) needs to be equal to the number of inputs(3) so that the decoupling matrix becomes a sqaure matrix. To achieve this, our state-space with 2 states is padded with two extra states ($x_3$ and $x_4$) such that:**
+
 $$\begin{equation}
 \begin{bmatrix}
   \dot{x_3}\\
