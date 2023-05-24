@@ -1,7 +1,7 @@
-# Input-Output FeedBack Linearization (IOFBL) Control of a PEM Fuel Cell
+# Input-Output FeedBack Linearization (IOFBL) and Control of a PEM Fuel Cell
 
 ## Brief Description
-This folder contains the IOFBL based controller designed for a PEM fuel cell model based on the [Padulles Model1](https://github.com/BoboyeOkeya/PEM_Fuel_Cell_Voltage_Control/blob/main/padulles_model.zcos)
+This folder contains the IOFBL-based controller designed for a PEM fuel cell model based on the [Padulles Model1](https://github.com/BoboyeOkeya/PEM_Fuel_Cell_Voltage_Control)
 
 ## The Controller Design
 
@@ -18,7 +18,7 @@ Where, $x_1$ is the partial pressure of hydrogen(atm), $x_2$ is the partial pres
 
 From the above state-space representation, it becomes obvious that the system is a multiple-input, single output (MISO) system.
 
-The steps for the IOFBL controller are as shown below:
+The steps for the IOFBL-based controller are as shown below:
 
 **1. Express the state space equations 1,2,3 above in the form below [1]**
 
@@ -29,7 +29,7 @@ $$
 $$    y_i = h_i(x)...(5)
 $$
 
-**2. In order to use the IOFBL technique the number of outputs(1) needs to be equal to the number of inputs(3) so that the decoupling matrix becomes a sqaure matrix. To achieve this, our state-space with 2 states is padded with two extra states ($x_3$ and $x_4$) such that:**
+**2. In order to use the IOFBL technique the number of outputs(1) needs to be equal to the number of inputs(3) so that the decoupling matrix becomes a square matrix. To achieve this, our state-space with 2 states is padded with two extra states ($x_3$ and $x_4$) thus transforming the MISO system into a MIMO system such that:**
 
 $$\begin{equation}
 \begin{bmatrix}
@@ -129,15 +129,7 @@ $$
 \end{bmatrix}...(11)
 $$
 
-Where,
-
-$$
-    \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}...(12)
-$$
-
-Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
-
-For our model, we the decoupling matrix is as shown below.
+For our model, the decoupling matrix is as shown below.
 
 $$
 E(x) = \begin{bmatrix}
@@ -205,11 +197,11 @@ With this, the design is almost ready, the next step is to build the computation
 
 ![controldiagram](figures/padulles1_control_diagram.jpg)
 
-The scilab script and the xcos model are available in the files `nonlinear_control_law.sci` and  `padulles1_IOFBL_Control.zcos`
+The Scilab script and the xcos model are available in the files `nonlinear_control_law.sci` and  `padulles1_IOFBL_Control.zcos`. The simulation parameters are available in `nonlinear_control_law.sci`.
 
 ## The Results
 
-To test the IOFBL control system, it was given a voltage output setpoint of 24V, a load current profile that changes over time, and the pole was adjusted until the system became stablized at the setpoint --the selected pole is at -1e8. Also, the solver settings had to be adjusted, the settings that produced the results shown in the process are shown below:
+To test the IOFBL-based control system, it was given a voltage output setpoint of 24V, a load current profile that changes over time, and the pole was adjusted until the system became stablized at the setpoint --the selected pole is at -1e8. Also, the solver settings had to be adjusted, the settings that produced the results shown in the process are shown below:
 
 ![solver](figures/solver_settings.png)
 
