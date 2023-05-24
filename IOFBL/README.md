@@ -21,10 +21,12 @@ From the above state-space representation, it becomes obvious that the system is
 The steps for the IOFBL controller are as shown below:
 
 **1. Express the state space equations 1,2,3 above in the form below [1]**
+
 $$
-    \dot{x} = f(x) + \sum_{i=1}^{m}{g_i(x)u_i}
-    \\
-    y_i = h_i(x)...(4)
+    \dot{x} = f(x) + \sum_{i=1}^{m}{g_i(x)u_i}...(4)
+$$
+
+$$    y_i = h_i(x)...(5)
 $$
 
 **2. In order to use the IOFBL technique the number of outputs(1) needs to be equal to the number of inputs(3) so that the decoupling matrix becomes a sqaure matrix. To achieve this, our state-space with 2 states is padded with two extra states ($x_3$ and $x_4$) such that:**
@@ -37,7 +39,7 @@ $$\begin{equation}
   u_2\\
   u_3\\
 \end{bmatrix} 
-\end{equation}$$
+\end{equation}...(6)$$
 
 $$\begin{equation}
 \begin{bmatrix}
@@ -47,18 +49,17 @@ $$\begin{equation}
   h_2(x)\\
   h_3(x)\\
 \end{bmatrix} 
-\end{equation}$$
+\end{equation}...(7)$$
 
 
- Hence, from equations 1-6, we can re-express the state-space as shown below:
-$$\begin{equation}
-\begin{split}
+ Hence, from equations 1-7, we can re-express the state-space as shown below:
+$$
 \begin{bmatrix}
   \dot{x_1} \\
   \dot{x_2}\\
     \dot{x_3} \\
   \dot{x_4}\\
-\end{bmatrix} & = \begin{bmatrix}
+\end{bmatrix}  = \begin{bmatrix}
   \frac{-x_1}{\tau_{H_2}}\\
   \frac{-x_2}{\tau_{O_2}}\\
     0\\
@@ -79,14 +80,14 @@ $$\begin{equation}
     0\\
   1\\
 \end{bmatrix}u_3
+$$
 
-\\
-
+$$
 \begin{bmatrix}
   {y_1} \\
   {y_2}\\
     {y_3} \\
-\end{bmatrix} & = \begin{bmatrix}
+\end{bmatrix} = \begin{bmatrix}
   V_{FC}\\
   x_3\\
 x_4\\
@@ -95,9 +96,7 @@ h_1(x)\\
   h_2(x)\\
   h_3(x)\\
 \end{bmatrix} 
-
-\end{split}
-\end{equation}$$
+$$
 
 **3. Next, we will be differentating the output vector $y_j$ until at least one of the outputs is directly related to at least one of the inputs $u_i$. This differential operation is expressed by the equation below [1]:**
 
@@ -107,8 +106,9 @@ $$\begin{equation}
 
 Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
 
-For our model, we have the following
-$$\begin{equation}
+For our model, we have the following:
+
+$$
 \begin{bmatrix}
   \dot{y_1} \\
   \dot{y_2}\\
@@ -126,26 +126,27 @@ $$\begin{equation}
   u_2\\
     u_3\\
 \end{bmatrix}
-\end{equation}$$
+$$
 
 Where,
-$$\begin{equation}
+$$
     \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}
-\end{equation}$$
+$$
 
 Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
 
 For our model, we the decoupling matrix is as shown below.
-$$\begin{equation}
+$$
 E(x) = \begin{bmatrix}
   L_{g_1}h_1 & L_{g_2}h_1 & L_{g_3}h_1\\
   L_{g_1}h_2 & L_{g_2}h_2 & L_{g_3}h_2\\
   L_{g_1}h_3 & L_{g_2}h_3 & L_{g_3}h_3\\
 \end{bmatrix}
-\end{equation}$$
+$$
 
 And if the decoupling matrix is non-singular, then we can derive a control input signal U such that:
-$$\begin{equation}
+
+$$
 U = \begin{bmatrix}
   u_1\\
   u_2\\
@@ -159,9 +160,10 @@ U = \begin{bmatrix}
   v_2\\
     v_3\\
 \end{bmatrix}
-\end{equation}$$
+$$
 
 By putting equation 12 into 9, we will arrive at a new system with new control inputs as shown below:
+
 $$\begin{equation}
 \begin{bmatrix}
   \dot{y_1} \\
@@ -177,15 +179,19 @@ $$\begin{equation}
 These computations can be done using a symbolic solver. MATLAB was used to solve these computations; the script and the result of U are available in `lie_derivative_solver.m`.
 
 The result of the computation showed that $u_2 =v_2$ and $u_3 = v_3$, so the only new control signal used for the setpoint tracking is $v_1$ which is equal to $\dot{y_1}$. The new control signal is then selected as follow:
+
 $$\begin{equation}
 v_1 = \dot{y_1} = \dot{y_1^d} - k_1(y_1 - y_1^d)
 \end{equation}$$
+
 Where ${y_1^d}$ is the voltage reference or setpoint, ${y_1}$ is fuel cell stack voltage output. And $k_1$ is the desired pole.
 
 Also, a tracking error controller can be added into the system, which makes the control input $v_1$ to be of the form:
+
 $$\begin{equation}
 v_1 = \dot{y_1} = \dot{y_1^d} - k_1(y_1 - y_1^d) - K_p(y_1 - y_1^d) - Ki\int(y_1 - y_1^d) dt 
 \end{equation}$$
+
 Where $K_p$ is the proportional gain and $K_i$ is the integral gain.
 
 With this, the design is almost ready, the next step is to build the computational simulations for the control system. The control diagram is similar to the one showed in [2] as shown below:
