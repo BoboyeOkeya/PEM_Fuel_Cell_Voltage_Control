@@ -53,6 +53,7 @@ $$\begin{equation}
 
 
  Hence, from equations 1-7, we can re-express the state-space as shown below:
+
 $$
 \begin{bmatrix}
   \dot{x_1} \\
@@ -129,6 +130,7 @@ $$
 $$
 
 Where,
+
 $$
     \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}
 $$
@@ -136,6 +138,7 @@ $$
 Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
 
 For our model, we the decoupling matrix is as shown below.
+
 $$
 E(x) = \begin{bmatrix}
   L_{g_1}h_1 & L_{g_2}h_1 & L_{g_3}h_1\\
