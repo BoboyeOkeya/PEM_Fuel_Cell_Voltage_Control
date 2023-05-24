@@ -80,7 +80,7 @@ $$
   \frac{-K_r}{k_{O_2}\tau_{O_2}}\\
     0\\
   1\\
-\end{bmatrix}u_3
+\end{bmatrix}u_3...(8)
 $$
 
 $$
@@ -96,13 +96,13 @@ x_4\\
 h_1(x)\\
   h_2(x)\\
   h_3(x)\\
-\end{bmatrix} 
+\end{bmatrix}...(9)
 $$
 
 **3. Next, we will be differentating the output vector $y_j$ until at least one of the outputs is directly related to at least one of the inputs $u_i$. This differential operation is expressed by the equation below [1]:**
 
 $$\begin{equation}
-    \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}
+    \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}...(10)
 \end{equation}$$
 
 Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
@@ -126,13 +126,13 @@ $$
   u_1\\
   u_2\\
     u_3\\
-\end{bmatrix}
+\end{bmatrix}...(11)
 $$
 
 Where,
 
 $$
-    \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}
+    \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}...(12)
 $$
 
 Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
@@ -144,7 +144,7 @@ E(x) = \begin{bmatrix}
   L_{g_1}h_1 & L_{g_2}h_1 & L_{g_3}h_1\\
   L_{g_1}h_2 & L_{g_2}h_2 & L_{g_3}h_2\\
   L_{g_1}h_3 & L_{g_2}h_3 & L_{g_3}h_3\\
-\end{bmatrix}
+\end{bmatrix}...(13)
 $$
 
 And if the decoupling matrix is non-singular, then we can derive a control input signal U such that:
@@ -162,10 +162,10 @@ U = \begin{bmatrix}
   v_1\\
   v_2\\
     v_3\\
-\end{bmatrix}
+\end{bmatrix}...(14)
 $$
 
-By putting equation 12 into 9, we will arrive at a new system with new control inputs as shown below:
+By putting equation 14 into 11, we will arrive at a new system with new control inputs as shown below:
 
 $$\begin{equation}
 \begin{bmatrix}
@@ -177,14 +177,14 @@ $$\begin{equation}
   v_2\\
     v_3\\
 \end{bmatrix}
-\end{equation}$$
+\end{equation}...(15)$$
 
 These computations can be done using a symbolic solver. MATLAB was used to solve these computations; the script and the result of U are available in `lie_derivative_solver.m`.
 
 The result of the computation showed that $u_2 =v_2$ and $u_3 = v_3$, so the only new control signal used for the setpoint tracking is $v_1$ which is equal to $\dot{y_1}$. The new control signal is then selected as follow:
 
 $$\begin{equation}
-v_1 = \dot{y_1} = \dot{y_1^d} - k_1(y_1 - y_1^d)
+v_1 = \dot{y_1} = \dot{y_1^d} - k_1(y_1 - y_1^d)...(16)
 \end{equation}$$
 
 Where ${y_1^d}$ is the voltage reference or setpoint, ${y_1}$ is fuel cell stack voltage output. And $k_1$ is the desired pole.
@@ -192,7 +192,7 @@ Where ${y_1^d}$ is the voltage reference or setpoint, ${y_1}$ is fuel cell stack
 Also, a tracking error controller can be added into the system, which makes the control input $v_1$ to be of the form:
 
 $$\begin{equation}
-v_1 = \dot{y_1} = \dot{y_1^d} - k_1(y_1 - y_1^d) - K_p(y_1 - y_1^d) - Ki\int(y_1 - y_1^d) dt 
+v_1 = \dot{y_1} = \dot{y_1^d} - k_1(y_1 - y_1^d) - K_p(y_1 - y_1^d) - Ki\int(y_1 - y_1^d) dt ...(17)
 \end{equation}$$
 
 Where $K_p$ is the proportional gain and $K_i$ is the integral gain.
