@@ -105,7 +105,7 @@ $$\begin{equation}
     \dot{y_j} = L_fh_j + \sum_{i=1}^{m}{(L_{g_i}h_j)u_i}...(10)
 \end{equation}$$
 
-Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
+Where $L_fh_j$ are the lie derivatives of the function $h_j(x)$ WRT to $f(x)$ and $L_{g_i}h_j$ are the lie derivatives of the function $h_j(x)$ WRT to $g_i(x)$.
 
 For our model, we have the following:
 
