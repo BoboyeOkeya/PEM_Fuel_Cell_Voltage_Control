@@ -70,6 +70,7 @@ $$
 $$
 
 Substituting $\ddot{y_1}$ from equation 4 into 6 gives
+
 $$
     \dot{s}= 0-\ddot{y_1^d} + \lambda(\dot{y_1}-\dot{y_1^d})...(7)
 $$
@@ -92,7 +93,7 @@ $$
 The equivalent term is derived from equation 8 and it is as shown below
 
 $$
-  \hat{u}_{eq}= \frac{-1}{\lambda L_{g_1}h_1}\left[\lambda(L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3)\right] -\lambda\dot{y_1^d} - \ddot{y_1^d} ...(10)
+\hat{u}_{eq}= \frac{-1}{\lambda L_{g_1}h_1}\left[\lambda(L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3)\right] -\lambda\dot{y_1^d} - \ddot{y_1^d} ...(10)
 $$
 
 The switching term can be defined using a [signum function](https://en.wikipedia.org/wiki/Sign_function) as shown in equation 11 below. This is a discontinous switching function and it causes a lot of chattering which can destroy the actuator or the fuel cell's fuel injector.
@@ -203,7 +204,7 @@ As in step 4 of A.0, the control input has two components the equivalent term ($
 The equivalent term is derived from equation 21 and it is as shown below
 
 $$
-    \hat{u}_{eq.int} = \frac{-1}{L_{g_1}h_1}\left[L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3 - \dot{y_1^d} +  \lambda \left(\frac{p}{q}\right)e\left(\int e dt\right)^{\frac{p}{q}-1}\right]...(22)
+\hat{u}_{eq.int} = \frac{-1}{L_{g_1}h_1}\left[L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3 - \dot{y_1^d} +  \lambda \left(\frac{p}{q}\right)e\left(\int e dt\right)^{\frac{p}{q}-1}\right]...(22)
 $$
 
 The switching term can be defined using a [signum function](https://en.wikipedia.org/wiki/Sign_function) as shown in equation 23 below. This is also a discontinous switching function that causes chattering.
