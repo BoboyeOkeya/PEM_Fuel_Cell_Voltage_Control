@@ -77,8 +77,7 @@ $$
 Substituting $\dot{y_1}$ from equation 2 into 7 gives
 
 $$
-    \dot{s}= -\ddot{y_1^d} +\lambda(L_fh_1 + L_{g_1}h_1.u_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3) -\lambda\dot{y_1^d}...(8)
-    
+  \dot{s}= -\ddot{y_1^d} +\lambda(L_fh_1 + L_{g_1}h_1.u_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3) -\lambda\dot{y_1^d}...(8)
 $$
 
 **4. Define the sliding mode control input**
@@ -93,7 +92,7 @@ $$
 The equivalent term is derived from equation 8 and it is as shown below
 
 $$
-\hat{u}_{eq}= \frac{-1}{\lambda L_{g_1}h_1}\left[\lambda(L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3)\right] -\lambda\dot{y_1^d} - \ddot{y_1^d} ...(10)
+  \hat{u}_{eq}= \frac{-1}{\lambda L_{g_1}h_1}\left[\lambda(L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3)\right] -\lambda\dot{y_1^d} - \ddot{y_1^d} ...(10)
 $$
 
 The switching term can be defined using a [signum function](https://en.wikipedia.org/wiki/Sign_function) as shown in equation 11 below. This is a discontinous switching function and it causes a lot of chattering which can destroy the actuator or the fuel cell's fuel injector.
@@ -149,7 +148,9 @@ $$
 $$ 
 
 This can be further simplified since $s. sgn(s) = |s|$, which turns equation 16 into the following:
-$$\dot{V}(s) = \frac{-1}{\lambda L_{g_1}h_1}(\eta.|s|)...(17).
+
+$$
+\dot{V}(s) = \frac{-1}{\lambda L_{g_1}h_1}(\eta.|s|)...(17).
 $$ 
 
 Equation 17 above shows that as long as $\lambda$ and $\eta$ are positive constants, then $\dot{V}(s)\leq 0$, hence $\dot{V}(s)$ is negative semi-definite(NSD).
@@ -203,7 +204,6 @@ The equivalent term is derived from equation 21 and it is as shown below
 
 $$
     \hat{u}_{eq.int} = \frac{-1}{L_{g_1}h_1}\left[L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3 - \dot{y_1^d} +  \lambda \left(\frac{p}{q}\right)e\left(\int e dt\right)^{\frac{p}{q}-1}\right]...(22)
-
 $$
 
 The switching term can be defined using a [signum function](https://en.wikipedia.org/wiki/Sign_function) as shown in equation 23 below. This is also a discontinous switching function that causes chattering.
