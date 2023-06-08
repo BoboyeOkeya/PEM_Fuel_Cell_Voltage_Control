@@ -265,7 +265,7 @@ In conclusion, the stability analysis shows that conventional and integral termi
 
 
 
-## The Scilab/Xcos Simulation  How to Use them
+## The Simulation Files & How to Use them
 
 The computer simulation of the control systems mentioned above are contained in the repo. The description of the files and how to use them are described below:
 
@@ -276,7 +276,12 @@ b. `padulles1_model_smc_sat.zcos` and `smc_sat_law.sci`: This runs the conventio
 
 c. `padulles1_model_itsmc.zcos` and `itsmc_law.sci`: This runs the integral terminal SMC using a **signum function**. The .zcos file contains the xcos model and the sliding mode control law is in the scilab script. To run this simulation, **save and execute** the `.sci` file first, after which you can then **start** the simulation in the xcos file.
 
-c. `padulles1_model_itsmc_sat.zcos` and `itsmc_sat_law.sci`: This runs the integral terminal SMC using a **saturation function**. The .zcos file contains the xcos model and the sliding mode control law is in the scilab script. To run this simulation, **save and execute** the `.sci` file first, after which you can then **start** the simulation in the xcos file.
+d. `padulles1_model_itsmc_sat.zcos` and `itsmc_sat_law.sci`: This runs the integral terminal SMC using a **saturation function**. The .zcos file contains the xcos model and the sliding mode control law is in the scilab script. To run this simulation, **save and execute** the `.sci` file first, after which you can then **start** the simulation in the xcos file.
+
+e. `lie_derivative_smc.m`: This is a matlab script used to compute the lie derivatives.
+
+e. `plots.sce`: This is used to generate the plots. To use this, you would have to first run the simulations in `a,b,c,d`.
+
 
 ## System Test, Results, and Discussion
 To test the system, the fuel cell load current is applied as shown in the figure below. 
