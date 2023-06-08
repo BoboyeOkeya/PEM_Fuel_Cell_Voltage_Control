@@ -1,3 +1,4 @@
+
 //First Figure
 scf(1)
 clf(1)

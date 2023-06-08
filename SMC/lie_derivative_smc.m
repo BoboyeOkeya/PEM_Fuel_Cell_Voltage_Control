@@ -32,19 +32,3 @@ L_g3_L_f_h = jacobian(L_f_h,X)*g3;
 
 y_dot = L_f_h + L_g1_h*u1 + L_g2_h*u2 + L_g3_h*u3;
 y_ddot = L_f_2_h + L_g1_L_f_h*u1 + L_g2_L_f_h*u2 + L_g3_L_f_h*u3;
-
-%{
-U =
- 
-(Kr*v3*(Kh2*tau_h2*x1 + 4*Ko2*tau_o2*x2))/(2*Ko2*tau_o2*x2) - (Kh2*tau_h2*v2*x1)/(2*Ko2*tau_o2*x2) + (2*F*Kh2*tau_h2*v1*x1)/(No*R*T) + (2*F*Kh2*tau_h2*x1*((No*R*T)/(2*F*tau_h2) + (No*R*T)/(4*F*tau_o2)))/(No*R*T)
-                                                                                                                                                                                                                 v2
-                                                                                                                                                                                                                 v3
- 
-%}
-
-
-
-%u3 - u1*((Kr*No*R*T)/(F*Kh2*tau_h2*x1) + (Kr*No*R*T)/(4*F*Ko2*tau_o2*x2))
-
-%(No*R*T*u1)/(2*F*Kh2*tau_h2*x1) - (No*R*T)/(2*F*tau_h2) - (No*R*T)/(4*F*tau_o2) - u3*((Kr*No*R*T)/(F*Kh2*tau_h2*x1) + (Kr*No*R*T)/(4*F*Ko2*tau_o2*x2)) + (No*R*T*u2)/(4*F*Ko2*tau_o2*x2)
-
