@@ -278,7 +278,26 @@ c. `padulles1_model_itsmc.zcos` and `itsmc_law.sci`: This runs the integral term
 
 c. `padulles1_model_itsmc_sat.zcos` and `itsmc_sat_law.sci`: This runs the integral terminal SMC using a **saturation function**. The .zcos file contains the xcos model and the sliding mode control law is in the scilab script. To run this simulation, **save and execute** the `.sci` file first, after which you can then **start** the simulation in the xcos file.
 
-## The Results
+## System Test, Results, and Discussion
+To test the system, the fuel cell load current is applied as shown in the figure below. 
+
+![loadcurrent](figures/load_current.png)
+
+The system parameters for each simulation can be found in the `.sci` files and in the `Set Context` tab of the Simulation tab of the `.zcos` files.
+
+For the Conventional SMC, the results are shown in the figure below.
+
+![csmc_result](figures/padulles1_smc_plot.png)
+
+Likewise, for the Conventional SMC, the results are shown in the figure below.
+
+![csmc_result](figures/padulles1_itsmc_plot.png)
+
+It can be seen from the two plots above that the saturation switching function significantly reduces the amount of chattering unlike the signum switching function. 
+
+Furthermore, whenever the load current changes, the conventional SMC appears to have a better transient performance in comparison to the integral since it has the lowest overshoot/undershoot. However, at steady-state the integral SMC has the best performance since it produces the lowest error. This is illustrated by the figure below that compares the error between both SMC types with a saturation switching function. 
+
+![error_sat](figures/error_sat_smc_itsmc.png)
 
 ## References
 [1]  J. J. E. Slotine and W. Li, “Applied Nonlinear Control." Englewood 
