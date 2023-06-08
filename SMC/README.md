@@ -6,7 +6,7 @@ This folder contains the sliding mode control (SMC) designed for a PEM fuel cell
 
 The SMC control is designed to act as the non-linear controller for the linearized system. The control diagram is as shown below:
 
-XXXXX
+![cntrldiag](figures/SMC_control_diagram.png)
 
 Furthermore, I have designed two main types of SMC-based controllers in the repository:
 
@@ -131,8 +131,7 @@ $$V(s) = \frac{1}{2}s^2 = \frac{1}{2}(\dot{e} + \lambda e)^2...(13)$$
 It can be seen that $V(0) = 0$, $V(\infty) = \infty$, and $V(s) >0$ for all $s\neq 0$. Hence V(s) is positive definite (PD).
 
 Next, let's check the derivative $\dot{V}(s)$ as follows
-$$\dot{V}(s) = (s.\dot{s})...(14)
-$$ 
+$$\dot{V}(s) = (s.\dot{s})...(14)$$ 
 
 Substituting equation 8 into equation 14 above gives 
 
