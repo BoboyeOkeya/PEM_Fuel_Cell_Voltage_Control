@@ -6,7 +6,7 @@ This folder contains the sliding mode control (SMC) designed for a PEM fuel cell
 
 The SMC control is designed to act as the non-linear controller for the linearized system. The control diagram is as shown below:
 
-![cntrldiag](figures/SMC_control_diagram.png)
+![cntrldiag](figures/smc_controldiagram.png)
 
 Furthermore, I have designed two main types of SMC-based controllers in the repository:
 
