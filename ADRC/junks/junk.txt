@@ -1,0 +1,39 @@
+=> The fuel cell stack voltage is represented as:
+
+$$
+z_1 = y_1 = V_{FC}
+$$
+
+$$
+\dot{z_1} = \dot{y_1} = L_fh_1 + L_{g_1}h_1.u_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3
+$$
+
+The input-output linearization process showed that the only input signal that can be used as a control signal is $u_1$!
+
+=> Hence, the disturbances can be thought of as:
+
+$$
+f = L_fh_1 + L_{g_2}h_1.u_2 + L_{g_3}h_1.u_3
+$$
+
+Where $L_fh_1$, $L_{g_1}h_1$, $L_{g_2}h_1$, $L_{g_3}h_1$ are lie- derivatives.  $u_1$ , $u_2$ and $u_3$ are the flow rate of hydrogen, the flow rate of oxygen, and the fuel cell stack load current respectively.
+
+=> The ESO takes the form shown below:
+
+$$
+\dot{\hat{z_1}} = \hat{z_2} + l_1(z_1 - \hat{z_1}) + b_ou_{1,adrc}
+$$
+
+$$
+\dot{\hat{z_2}} = l_2(z_1 - \hat{z_1})
+$$
+
+Where $\hat{z_1}$ is the estimate of the output voltage and $\hat{z_2}$ is the estimate of the disturbances $f$. 
+
+If we assume $w_o$ to be a negative integer representing the observer bandwidth, then ESO parameters can be selected as $l_1 = 2w_o$ and $l_2 = w_o^2$ based on a second-order hurwitz polynomial
+
+=> The controller is then designed as:
+
+$$
+u_{1,adrc} = \frac{K_p(r - \hat{z_1})}{b_o}
+$$
